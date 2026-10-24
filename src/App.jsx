@@ -1,24 +1,19 @@
 
-import { Routes, Route, Link } from 'react-router';
-import Home from './pages/Home';
-import About from './pages/About';
-import NotFound from './pages/NotFound';
-
+import { Routes, Route } from 'react-router';
+import Home from './pages/Home.jsx';
+import About from './pages/About.jsx';
+import NotFound from './pages/NotFound.jsx';
+import MainLayout from './layout/MainLayout.jsx';
 
 function App() {
     return (
-        <main className="min-h-screen bg-slate-950 p-8 text-white">
-            <nav className="mb-8 flex gap-6">
-                <Link to="/">Home</Link>
-                <Link to="/about">About</Link>
-            </nav>
-
-            <Routes>
+        <Routes>
+            <Route path="/" element={<MainLayout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<NotFound />} />
-            </Routes>
-        </main>
+            </Route>
+        </Routes>
     );
 }
 

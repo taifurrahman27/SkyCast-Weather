@@ -1,7 +1,7 @@
 
 const Home = () => {
     return (
-        <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
+        <main className="mx-auto max-w-5xl bg-slate-950 px-6 py-12 text-white">
             <div className="mx-auto max-w-5xl">
                 <h1 className="text-4xl font-bold text-sky-400">
                     SkyCast Weather Home
