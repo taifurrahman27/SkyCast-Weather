@@ -1,9 +1,6 @@
 
 import { Routes, Route, Link } from 'react-router';
-
-function Home() {
-    return <h1 className="text-3xl font-bold">SkyCast Weather</h1>;
-}
+import Home from './pages/Home';
 
 function About() {
     return <h1 className="text-3xl font-bold">About SkyCast</h1>;
