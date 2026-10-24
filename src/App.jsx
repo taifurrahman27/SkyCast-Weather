@@ -1,10 +1,8 @@
 
 import { Routes, Route, Link } from 'react-router';
 import Home from './pages/Home';
+import About from './pages/About';
 
-function About() {
-    return <h1 className="text-3xl font-bold">About SkyCast</h1>;
-}
 
 function NotFound() {
     return <h1 className="text-3xl font-bold">Page not found</h1>;
