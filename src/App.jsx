@@ -2,11 +2,8 @@
 import { Routes, Route, Link } from 'react-router';
 import Home from './pages/Home';
 import About from './pages/About';
+import NotFound from './pages/NotFound';
 
-
-function NotFound() {
-    return <h1 className="text-3xl font-bold">Page not found</h1>;
-}
 
 function App() {
     return (
