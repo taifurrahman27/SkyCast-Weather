@@ -1,30 +1,31 @@
 
+import { Routes, Route, Link } from 'react-router';
+
+function Home() {
+    return <h1 className="text-3xl font-bold">SkyCast Weather</h1>;
+}
+
+function About() {
+    return <h1 className="text-3xl font-bold">About SkyCast</h1>;
+}
+
+function NotFound() {
+    return <h1 className="text-3xl font-bold">Page not found</h1>;
+}
+
 function App() {
     return (
-        <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
-            <div className="mx-auto max-w-5xl">
-                <p className="mb-3 font-medium tracking-widest text-sky-400">
-                    YOUR WEATHER COMPANION
-                </p>
+        <main className="min-h-screen bg-slate-950 p-8 text-white">
+            <nav className="mb-8 flex gap-6">
+                <Link to="/">Home</Link>
+                <Link to="/about">About</Link>
+            </nav>
 
-                <h1 className="text-4xl font-bold sm:text-6xl">
-                    SkyCast Weather
-                </h1>
-
-                <p className="mt-4 text-lg text-slate-300">
-                    Discover the weather. Plan your day.
-                </p>
-
-                <div className="mt-10 rounded-3xl border border-white/10 bg-white/5 p-8">
-                    <p className="text-slate-400">Current weather</p>
-                    <p className="mt-3 text-2xl font-semibold">
-                        Your forecast starts here
-                    </p>
-                    <p className="mt-2 text-slate-400">
-                        Search for a city to get started.
-                    </p>
-                </div>
-            </div>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
         </main>
     );
 }
