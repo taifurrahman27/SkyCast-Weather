@@ -1,14 +1,11 @@
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
-export async function getWeather(city) {
+async function fetchWeather(url) {
   if (!API_KEY) {
-    throw new Error("Weather API key is missing.");
+    throw new Error("Weather API key is missing. Check your .env file.");
   }
 
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`,
-  );
-
+  const response = await fetch(url);
   const data = await response.json();
 
   if (!response.ok) {
@@ -18,27 +15,27 @@ export async function getWeather(city) {
   return data;
 }
 
-export async function getWeatherByCoordinates(latitude, longitude) {
-  if (!API_KEY) {
-    throw new Error("Weather API key is missing.");
-  }
-
+export async function getWeather(city) {
   const params = new URLSearchParams({
-    lat: latitude,
-    lon: longitude,
+    q: city,
     appid: API_KEY,
     units: "metric",
   });
 
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?${params}`,
-  );
+  const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
 
-  const data = await response.json();
+  return fetchWeather(url);
+}
 
-  if (!response.ok) {
-    throw new Error(data.message || "Unable to fetch weather.");
-  }
+export async function getWeatherByCoordinates(latitude, longitude) {
+  const params = new URLSearchParams({
+    lat: String(latitude),
+    lon: String(longitude),
+    appid: API_KEY,
+    units: "metric",
+  });
 
-  return data;
+  const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
+
+  return fetchWeather(url);
 }
