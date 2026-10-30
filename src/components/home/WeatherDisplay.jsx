@@ -1,3 +1,4 @@
+
 import WeatherDetails from '../weather/WeatherDetails';
 
 const WeatherDisplay = ({
@@ -24,7 +25,7 @@ const WeatherDisplay = ({
 
                     <p className="mt-2 text-slate-400">
                         {weather
-                            ? `${weather.name}${weather.sys?.country ? `, ${weather.sys.country}` : ''}`
+                            ? `${weather.name}${weather.country ? `, ${weather.country}` : ''}`
                             : 'Current conditions and weather details'}
                     </p>
                 </div>
@@ -75,7 +76,7 @@ const WeatherDisplay = ({
 
                         <p className="mx-auto mt-2 max-w-md leading-7 text-slate-400">
                             {weatherError
-                                ? 'Check your API key or connection, then choose a location to try again.'
+                                ? 'Check your internet connection, then choose a location to try again.'
                                 : 'Select your city or use your current location to view the temperature, humidity, wind speed, and current conditions.'}
                         </p>
 

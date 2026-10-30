@@ -1,41 +1,79 @@
-const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+const BASE_URL = "https://api.open-meteo.com/v1/forecast";
+const GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search";
 
-async function fetchWeather(url) {
-  if (!API_KEY) {
-    throw new Error("Weather API key is missing. Check your .env file.");
-  }
+// Get city coordinates
+const getCoordinates = async (city) => {
+  const params = new URLSearchParams({
+    name: city,
+    count: "1",
+    language: "en",
+    format: "json",
+  });
 
-  const response = await fetch(url);
-  const data = await response.json();
+  const response = await fetch(`${GEOCODING_URL}?${params}`);
 
   if (!response.ok) {
-    throw new Error(data.message || "Unable to fetch weather.");
+    throw new Error("Unable to find city.");
   }
 
-  return data;
-}
+  const data = await response.json();
 
-export async function getWeather(city) {
+  if (!data.results?.length) {
+    throw new Error("City not found.");
+  }
+
+  return data.results[0];
+};
+
+// Fetch weather using coordinates
+const fetchWeather = async (latitude, longitude) => {
   const params = new URLSearchParams({
-    q: city,
-    appid: API_KEY,
-    units: "metric",
+    latitude: String(latitude),
+    longitude: String(longitude),
+    current: [
+      "temperature_2m",
+      "relative_humidity_2m",
+      "apparent_temperature",
+      "is_day",
+      "precipitation",
+      "weather_code",
+      "wind_speed_10m",
+    ].join(","),
+    timezone: "auto",
   });
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
+  const response = await fetch(`${BASE_URL}?${params}`);
 
-  return fetchWeather(url);
-}
+  if (!response.ok) {
+    throw new Error("Unable to fetch weather.");
+  }
 
-export async function getWeatherByCoordinates(latitude, longitude) {
-  const params = new URLSearchParams({
-    lat: String(latitude),
-    lon: String(longitude),
-    appid: API_KEY,
-    units: "metric",
-  });
+  return response.json();
+};
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
+// Get weather by city name
+export const getWeather = async (city) => {
+  const location = await getCoordinates(city);
 
-  return fetchWeather(url);
-}
+  const weather = await fetchWeather(location.latitude, location.longitude);
+
+  return {
+    name: location.name,
+    country: location.country,
+    latitude: location.latitude,
+    longitude: location.longitude,
+    current: weather.current,
+  };
+};
+
+// Get weather using current coordinates
+export const getWeatherByCoordinates = async (latitude, longitude) => {
+  const weather = await fetchWeather(latitude, longitude);
+
+  return {
+    name: `${latitude.toFixed(2)}, ${longitude.toFixed(2)}`,
+    latitude,
+    longitude,
+    current: weather.current,
+  };
+};
