@@ -69,7 +69,7 @@ const MainLayout = () => {
             </main>
 
             {/* Footer */}
-            <footer className="relative mt-16 overflow-hidden border-t border-white/10 bg-linear-to-b from-slate-900 to-slate-950 px-6 pt-12 pb-6">
+            <footer className="relative mt-10 overflow-hidden border-t border-white/10 bg-linear-to-b from-slate-900 to-slate-950 px-6 pt-12 pb-6">
                 {/* Decorative Background */}
                 <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-sky-500/10 blur-3xl" />
 

@@ -45,14 +45,14 @@ const Hero = ({ location, onOpenModal }) => {
                 </h1>
 
                 {/* Description */}
-                <p className="mt-6 max-w-xl text-base leading-8 text-slate-400 sm:text-lg">
+                <p className="mt-4 max-w-xl text-base leading-6 text-slate-400 sm:text-lg">
                     Discover the weather around you and make every day
                     count. Get real-time weather insights to plan your
                     next adventure with confidence.
                 </p>
 
                 {/* Location Button */}
-                <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                     <button
                         type="button"
                         onClick={onOpenModal}
@@ -98,17 +98,6 @@ const Hero = ({ location, onOpenModal }) => {
                     )}
                 </div>
 
-                {/* Bottom Highlight */}
-                <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/10 pt-6 text-xs font-medium text-slate-500">
-                    <span className="flex items-center gap-2">
-                        <span className="text-sky-400">✦</span>
-                        Simple weather insights
-                    </span>
-                    <span className="flex items-center gap-2">
-                        <span className="text-sky-400">✦</span>
-                        Your location, your forecast
-                    </span>
-                </div>
             </div>
         </section>
     );

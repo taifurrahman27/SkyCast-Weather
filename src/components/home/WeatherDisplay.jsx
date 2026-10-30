@@ -10,7 +10,7 @@ const WeatherDisplay = ({
     return (
         <section
             aria-labelledby="forecast-heading"
-            className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8"
+            className="rounded-3xl border my-6 border-white/10 bg-white/5 p-6 sm:p-8"
         >
             <div>
                 <h2
