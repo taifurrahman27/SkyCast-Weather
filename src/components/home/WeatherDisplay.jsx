@@ -3,40 +3,28 @@ import WeatherDetails from '../weather/WeatherDetails';
 
 const WeatherDisplay = ({
     weather,
-    location,
     coordinates,
     isLoading,
     weatherError,
-    onOpenModal,
 }) => {
     return (
         <section
             aria-labelledby="forecast-heading"
             className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8"
         >
-            <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                    <h2
-                        id="forecast-heading"
-                        className="text-2xl font-semibold"
-                    >
-                        Your Local Weather
-                    </h2>
-
-                    <p className="mt-2 text-slate-400">
-                        {weather
-                            ? `${weather.name}${weather.country ? `, ${weather.country}` : ''}`
-                            : 'Current conditions and weather details'}
-                    </p>
-                </div>
-
-                <button
-                    type="button"
-                    onClick={onOpenModal}
-                    className="rounded-xl border border-sky-400/30 bg-sky-400/10 px-4 py-2 font-semibold text-sky-300 transition hover:bg-sky-400/20"
+            <div>
+                <h2
+                    id="forecast-heading"
+                    className="text-2xl font-semibold"
                 >
-                    {location ? 'Change Location' : 'Select Location'}
-                </button>
+                    Your Local Weather
+                </h2>
+
+                <p className="mt-2 text-slate-400">
+                    {weather
+                        ? `${weather.name}${weather.country ? `, ${weather.country}` : ''}`
+                        : 'Current conditions and weather details'}
+                </p>
             </div>
 
             {isLoading && (
@@ -79,14 +67,6 @@ const WeatherDisplay = ({
                                 ? 'Check your internet connection, then choose a location to try again.'
                                 : 'Select your city or use your current location to view the temperature, humidity, wind speed, and current conditions.'}
                         </p>
-
-                        <button
-                            type="button"
-                            onClick={onOpenModal}
-                            className="mt-6 rounded-xl bg-sky-500 px-6 py-3 font-semibold transition hover:bg-sky-400"
-                        >
-                            Choose Your Location
-                        </button>
                     </div>
                 )
             )}
@@ -95,3 +75,4 @@ const WeatherDisplay = ({
 };
 
 export default WeatherDisplay;
+
