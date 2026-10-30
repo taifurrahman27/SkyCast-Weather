@@ -1,6 +1,6 @@
 const Hero = ({ location, onOpenModal }) => {
     return (
-        <section className="py-10">
+        <section className="py-6 sm:py-12">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-sky-400">
                 Your personal weather companion
             </p>
